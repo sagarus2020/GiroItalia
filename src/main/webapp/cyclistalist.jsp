@@ -69,7 +69,22 @@
 				</c:forEach>
 		</div>
 			<div class="container">
-				<c:forEach var="i" items="${cyclistas}">
+				<c:forEach var="i" items="${paises}">
+						<div class="row">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">"${i.nombre}"</h5>
+
+
+
+							
+
+						</div>
+					</div>
+				</c:forEach>
+						</div>
+			<div class="container">
+				<c:forEach var="i" items="${teams}">
 						<div class="row">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">

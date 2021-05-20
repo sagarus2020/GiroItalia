@@ -6,8 +6,11 @@ import java.util.List;
 
 
 import co.dao.CyclistaDao;
-
+import co.dao.PaisDao;
+import co.dao.TeamDao;
 import co.model.Cyclista;
+import co.model.Pais;
+import co.model.Team;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -24,6 +27,8 @@ public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private CyclistaDao cyclistaDao;
+	private PaisDao paisDao;
+	private TeamDao teamDao;
 
     /**
      * Default constructor. 
@@ -38,6 +43,8 @@ public class TestServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 
     	this.cyclistaDao = new CyclistaDao();
+    	this.paisDao = new PaisDao();
+    	this.teamDao = new TeamDao();
 	}
 
 	/**
@@ -50,6 +57,9 @@ public class TestServlet extends HttpServlet {
 
 			default:
 				listCyclistas(request,response);
+				listPaises(request,response);
+				listTeams(request,response);
+				
 				break;
 			}
 		}catch(SQLException e)
@@ -73,6 +83,28 @@ public class TestServlet extends HttpServlet {
 		List<Cyclista> cyclistas = this.cyclistaDao.selectAll();
 		//CONEXION CON ITEM
 		request.setAttribute("cyclistas", cyclistas);
+		List<Pais> paises = this.paisDao.selectAll();
+		//CONEXION CON ITEM
+		request.setAttribute("paises", paises);
+		List<Team> teams = this.teamDao.selectAll();
+		//CONEXION CON ITEM
+		request.setAttribute("teams", teams);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cyclistalist.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void listPaises(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException{
+
+		List<Pais> paises = this.paisDao.selectAll();
+		//CONEXION CON ITEM
+		request.setAttribute("paises", paises);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cyclistalist.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void listTeams(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException{
+
+		List<Team> teams = this.teamDao.selectAll();
+		//CONEXION CON ITEM
+		request.setAttribute("teams", teams);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cyclistalist.jsp");
 		dispatcher.forward(request, response);
 	}

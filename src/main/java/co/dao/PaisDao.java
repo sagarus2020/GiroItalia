@@ -13,13 +13,13 @@ public class PaisDao {
 
 	private ConexionPostgresSQL c;
 	//                          comando_objectoDB_tipo de dato                        
-	private static final String INSERT_PAIS_SQL = "INSERT INTO pais (name) VALUES (?);";
-	private static final String DELETE_PAIS_SQL = "DELETE FROM pais WHERE id = ?;";
-	private static final String UPDATE_PAIS_SQL = "UPDATE pais SET name=?  WHERE id = ?;";
+	private static final String INSERT_PAIS_SQL = "INSERT INTO country (name) VALUES (?);";
+	private static final String DELETE_PAIS_SQL = "DELETE FROM country WHERE id = ?;";
+	private static final String UPDATE_PAIS_SQL = "UPDATE country SET name=?  WHERE id = ?;";
 
 	//                          comando_objectoDB_por_tipo de dato 
-	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM pais WHERE id = ?;";
-	private static final String SELECT_ALL_PAISES = "SELECT * FROM pais;";
+	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM country WHERE id = ?;";
+	private static final String SELECT_ALL_PAISES = "SELECT * FROM country;";
 	
 	public PaisDao() {
 		this.c = ConexionPostgresSQL.getConexion();

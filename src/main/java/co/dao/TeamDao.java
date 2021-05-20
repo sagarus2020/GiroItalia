@@ -6,30 +6,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.model.Pais;
+import co.model.Team;
 import co.util.ConexionPostgresSQL;
 
 public class TeamDao {
 
 	private ConexionPostgresSQL c;
 	//                          comando_objectoDB_tipo de dato                        
-	private static final String INSERT_PAIS_SQL = "INSERT INTO pais (name) VALUES (?);";
-	private static final String DELETE_PAIS_SQL = "DELETE FROM pais WHERE id = ?;";
-	private static final String UPDATE_PAIS_SQL = "UPDATE pais SET nombre=?  WHERE id = ?;";
+	private static final String INSERT_PAIS_SQL = "INSERT INTO team (name,country) VALUES (?,?);";
+	private static final String DELETE_PAIS_SQL = "DELETE FROM team WHERE id = ?;";
+	private static final String UPDATE_PAIS_SQL = "UPDATE team SET nombre=?, country=?  WHERE id = ?;";
 
 	//                          comando_objectoDB_por_tipo de dato 
-	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM pais WHERE id = ?;";
-	private static final String SELECT_ALL_PAISES = "SELECT * FROM pais;";
+	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM team WHERE id = ?;";
+	private static final String SELECT_ALL_PAISES = "SELECT * FROM team;";
 	
 	public TeamDao() {
 		this.c = ConexionPostgresSQL.getConexion();
 	}
 
-	public void insert(Pais pais) throws SQLException {
+	public void insert(Team team) throws SQLException {
 		try {
 			c.setPreparedStatement(INSERT_PAIS_SQL);
 			PreparedStatement pr = c.getPreparedStatement();
-			pr.setString(1, pais.getNombre());
+			pr.setString(1, team.getNombre());
 
 			
 			c.execute();
@@ -40,7 +40,7 @@ public class TeamDao {
 	}
 
 
-	public Pais select(int id) {
+	public Team select(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -48,8 +48,8 @@ public class TeamDao {
 	
 
 
-	public List<Pais> selectAll() throws SQLException{
-		List<Pais> paises = new ArrayList<>();
+	public List<Team> selectAll() throws SQLException{
+		List<Team> teams = new ArrayList<>();
 
 		try {
 			//strng sql que sirve como variable EXACTA de codigo
@@ -61,18 +61,19 @@ public class TeamDao {
 			while(rs.next())
 			{
 				String id= rs.getString("id");
-				String nombre = rs.getString("nombre");
+				String nombre = rs.getString("name");
+				String country = rs.getString("country");
 
 
 				
-				paises.add( new Pais (id,nombre) );
+				teams.add( new Team (id,nombre,country) );
 			}
 		}catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
 //		devuelve la lista
-		return paises;
+		return teams;
 	}
 
 
@@ -82,13 +83,13 @@ public class TeamDao {
 	}
 
 
-	public void update(Pais pais) throws SQLException {
+	public void update(Team team) throws SQLException {
 		try {
 			c.setPreparedStatement(UPDATE_PAIS_SQL);
 			PreparedStatement pr = c.getPreparedStatement();
 			
-			pr.setString(1, pais.getNombre());
-
+			pr.setString(1, team.getNombre());
+			pr.setString(2, team.getCountry());
 			
 			c.execute();
 		} catch (SQLException e) {
