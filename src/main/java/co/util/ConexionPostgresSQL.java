@@ -12,18 +12,18 @@ public class ConexionPostgresSQL {
 	private Connection c = null;
 	private PreparedStatement pr; //sentencia sql para interactuar con la DB
 	
-	String host = "queenie.db.elephantsql.com";
-	String dbName = "mnjgxshj";
-	String driver="org.postgresql.Driver";
-	String url = "jdbc:postgresql://"+host+":5432/"+dbName;
-	String usuario = "mnjgxshj";
+	private static final String host = "queenie.db.elephantsql.com";
+	private static final String dbName = "mnjgxshj";
+	private static final String driver = "org.postgresql.Driver";
+	private static final String userName = "mnjgxshj";
 	private static final String password = "Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV";
+	private static final String url = "jdbc:postgresql://" + host + ":5432/" + dbName;
 	
-	private ConexionPostgresSQL() {
+	public ConexionPostgresSQL() {
 		
 		try {
 			Class.forName(driver).newInstance();
-			c = (Connection)DriverManager.getConnection(url,usuario,password);
+			c = (Connection)DriverManager.getConnection(url,userName,password);
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,13 +14,13 @@ public class CyclistaDao {
 
 	private ConexionPostgresSQL c;
 	//                          comando_objectoDB_tipo de dato                        
-	private static final String INSERT_CYCLISTA_SQL = "INSERT INTO cyclista (nombre,resumen) VALUES (?,?);";
-	//private static final String DELETE_CYCLISTA_SQL = "DELETE FROM cyclista WHERE id = ?;";
-	private static final String UPDATE_CYCLISTA_SQL = "UPDATE cyclista SET nombre=?,resumen=?  WHERE id = ?;";
-	//private static final String SELECT_CYCLISTA_BY_SQL = "SELECT * FROM cyclista WHERE id = ?;";
+	private static final String INSERT_CYCLIST_SQL = "INSERT INTO cyclist (nombre,email,birthdate,country,team) VALUES (?,?,?,?,?);";
+	private static final String DELETE_CYCLIST_SQL = "DELETE FROM cyclista WHERE id = ?;";
+	private static final String UPDATE_CYCLIST_SQL = "UPDATE cyclist SET nombre=?,email=?,birthdate=?,country=?,team=?  WHERE id = ?;";
+
 	//                          comando_objectoDB_por_tipo de dato 
-	private static final String SELECT_CYCLISTA_BY_ID = "SELECT * FROM cyclista WHERE id = ?;";
-	private static final String SELECT_ALL_CYCLISTAS = "SELECT * FROM cyclista;";
+	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM cyclista WHERE id = ?;";
+	private static final String SELECT_ALL_CYCLISTS = "SELECT * FROM cyclista;";
 	
 	public CyclistaDao() {
 		this.c = ConexionPostgresSQL.getConexion();
@@ -28,7 +28,7 @@ public class CyclistaDao {
 
 	public void insert(Cyclista cyclista) throws SQLException {
 		try {
-			c.setPreparedStatement(INSERT_CYCLISTA_SQL);
+			c.setPreparedStatement(INSERT_CYCLIST_SQL);
 			PreparedStatement pr = c.getPreparedStatement();
 			pr.setString(1, cyclista.getNombre());
 			pr.setString(2, cyclista.getEmail());
@@ -57,7 +57,7 @@ public class CyclistaDao {
 
 		try {
 			//strng sql que sirve como variable EXACTA de codigo
-			c.setPreparedStatement(SELECT_ALL_CYCLISTAS);
+			c.setPreparedStatement(SELECT_ALL_CYCLISTS);
 			PreparedStatement pr = c.getPreparedStatement();
 			//el parametro id es por donde selecciona el buscador
 
@@ -91,7 +91,7 @@ public class CyclistaDao {
 
 	public void update(Cyclista cyclista) throws SQLException {
 		try {
-			c.setPreparedStatement(UPDATE_CYCLISTA_SQL);
+			c.setPreparedStatement(UPDATE_CYCLIST_SQL);
 			PreparedStatement pr = c.getPreparedStatement();
 			
 			pr.setString(1, cyclista.getNombre());
