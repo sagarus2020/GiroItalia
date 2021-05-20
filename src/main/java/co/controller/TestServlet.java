@@ -73,7 +73,7 @@ public class TestServlet extends HttpServlet {
 		List<Cyclista> cyclistas = this.cyclistaDao.selectAll();
 		//CONEXION CON ITEM
 		request.setAttribute("cyclistas", cyclistas);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("eventosCyclistas.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cyclistalist.jsp");
 		dispatcher.forward(request, response);
 	}
 

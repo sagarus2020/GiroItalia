@@ -44,9 +44,39 @@
 							<h5 class="card-title">"${i.nombre}"</h5>
 
 							<p class="card-text">"${i.email}"</p>
+							
 							<p class="card-text">"${i.birthdate}"</p>
+							<img alt="" src="equipos/"+"${i.country}">
 							<p class="card-text">"${i.country}"</p>
 							<p class="card-text">"${i.team}"</p>
+							
+
+						</div>
+					</div>
+				</c:forEach>
+		</div>
+			<div class="container">
+				<c:forEach var="i" items="${paises}">
+						<div class="row">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">"${i.nombre}"</h5>
+
+							
+
+						</div>
+					</div>
+				</c:forEach>
+		</div>
+			<div class="container">
+				<c:forEach var="i" items="${cyclistas}">
+						<div class="row">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">"${i.nombre}"</h5>
+
+							<p class="card-text">"${i.country}"</p>
+
 							
 
 						</div>

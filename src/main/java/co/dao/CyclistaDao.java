@@ -14,13 +14,13 @@ public class CyclistaDao {
 
 	private ConexionPostgresSQL c;
 	//                          comando_objectoDB_tipo de dato                        
-	private static final String INSERT_CYCLIST_SQL = "INSERT INTO cyclist (nombre,email,birthdate,country,team) VALUES (?,?,?,?,?);";
-	private static final String DELETE_CYCLIST_SQL = "DELETE FROM cyclista WHERE id = ?;";
-	private static final String UPDATE_CYCLIST_SQL = "UPDATE cyclist SET nombre=?,email=?,birthdate=?,country=?,team=?  WHERE id = ?;";
+	private static final String INSERT_CYCLIST_SQL = "INSERT INTO cyclist (name,email,birthdate,country,team) VALUES (?,?,?,?,?);";
+	private static final String DELETE_CYCLIST_SQL = "DELETE FROM cyclist WHERE id = ?;";
+	private static final String UPDATE_CYCLIST_SQL = "UPDATE cyclist SET name=?,email=?,birthdate=?,country=?,team=?  WHERE id = ?;";
 
 	//                          comando_objectoDB_por_tipo de dato 
-	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM cyclista WHERE id = ?;";
-	private static final String SELECT_ALL_CYCLISTS = "SELECT * FROM cyclista;";
+	private static final String SELECT_CYCLISA_BY_ID = "SELECT * FROM cyclist WHERE id = ?;";
+	private static final String SELECT_ALL_CYCLISTS = "SELECT * FROM cyclist;";
 	
 	public CyclistaDao() {
 		this.c = ConexionPostgresSQL.getConexion();
@@ -65,7 +65,7 @@ public class CyclistaDao {
 			while(rs.next())
 			{
 				int id= rs.getInt("id");
-				String nombre = rs.getString("nombre");
+				String nombre = rs.getString("name");
 				String email = rs.getString("email");
 				String birthdate = rs.getString("birthdate");
 				String country = rs.getString("country");
