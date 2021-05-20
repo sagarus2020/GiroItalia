@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-import co.dao.CyclistaDaoMySQL;
+import co.dao.CyclistaDao;
 
 import co.model.Cyclista;
 import jakarta.servlet.RequestDispatcher;
@@ -17,13 +17,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ProyectoServlet
+ * Servlet implementation class CyclistaServlet
  */
 @WebServlet("/")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private CyclistaDaoMySQL proyectoDao;
+	private CyclistaDao cyclistaDao;
 
     /**
      * Default constructor. 
@@ -37,7 +37,7 @@ public class TestServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 
-    	this.proyectoDao = new CyclistaDaoMySQL();
+    	this.cyclistaDao = new CyclistaDao();
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class TestServlet extends HttpServlet {
 			switch(action){
 
 			default:
-				listProyectos(request,response);
+				listCyclistas(request,response);
 				break;
 			}
 		}catch(SQLException e)
@@ -68,12 +68,12 @@ public class TestServlet extends HttpServlet {
 	
 
 	
-	private void listProyectos(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException{
+	private void listCyclistas(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException{
 
-		List<Cyclista> proyectos = this.proyectoDao.selectAll();
+		List<Cyclista> cyclistas = this.cyclistaDao.selectAll();
 		//CONEXION CON ITEM
-		request.setAttribute("proyectos", proyectos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("eventosProyectos.jsp");
+		request.setAttribute("cyclistas", cyclistas);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("eventosCyclistas.jsp");
 		dispatcher.forward(request, response);
 	}
 

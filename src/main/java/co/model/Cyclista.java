@@ -1,6 +1,7 @@
 package co.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -17,11 +18,18 @@ public class Cyclista implements Serializable {
 
 	private int id;
 	private String nombre;
-	private String resumen;
-
-	public Cyclista(String nombre, String resumen) {
+	private String email;
+    private String birthdate;
+    private String country;
+    private String team;
+    
+	public Cyclista(String nombre, String email,String birthdate, String country,String team) {
 		this.nombre = nombre;
-		this.resumen = resumen;
+		this.email = email;
+		this.nombre = birthdate;
+		this.email = country;
+		this.nombre = team;
+
 	}
 
 

@@ -6,23 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ConexionMySQL {
-	
-	private static ConexionMySQL db;
+public class ConexionPostgresSQL {
+
+	private static ConexionPostgresSQL db;
 	private Connection c = null;
 	private PreparedStatement pr; //sentencia sql para interactuar con la DB
 	
-	private static final String url = "queenie.db.elephantsql.com (queenie-01)";
-	private static final String dbName = "mnjgxshj";
-	private static final String driver = "com.mysql.jdbc.Driver";
-	private static final String userName = "mnjgxshj";
+	String host = "queenie.db.elephantsql.com";
+	String dbName = "mnjgxshj";
+	String driver="org.postgresql.Driver";
+	String url = "jdbc:postgresql://"+host+":5432/"+dbName;
+	String usuario = "mnjgxshj";
 	private static final String password = "Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV";
 	
-	private ConexionMySQL() {
+	private ConexionPostgresSQL() {
 		
 		try {
 			Class.forName(driver).newInstance();
-			c = (Connection)DriverManager.getConnection(url+dbName,userName,password);
+			c = (Connection)DriverManager.getConnection(url,usuario,password);
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,10 +76,10 @@ public class ConexionMySQL {
 		return this.pr;
 	}
 	
-	public static ConexionMySQL getConexion()
+	public static ConexionPostgresSQL getConexion()
 	{
 		if(db==null)
-			db = new ConexionMySQL();
+			db = new ConexionPostgresSQL();
 		return db;
 	}
 	
